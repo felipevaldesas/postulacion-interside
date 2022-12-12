@@ -1,0 +1,38 @@
+<h4>Realizar recarga al Cliente</h4>
+
+<div class="mb-12" *ngIf="mensaje !== null" class="alert" [ngClass]="{'alert-danger': error,'alert-info': !error }">
+	<label>{{ mensaje }}</label>
+</div>
+
+<form [formGroup]="formulario" (ngSubmit)="submit()">
+	
+	<div class="row">
+		<div class="col-md-6 mb-6">
+			<label for="cuenta">Nro de Cuenta</label>
+			<input	[disabled]="true"
+					type="text"
+					value="{{cliente?.cuenta}}"
+					class="form-control"
+					id="cuenta"
+					placeholder="xxxxxxxxx">
+		</div>
+		
+		<div class="col-md-6 mb-6">
+			<label for="recarga">Monto de la Recarga</label>
+			<input	formControlName="recarga"
+					type="number"
+					class="form-control"
+					id="recarga"
+					placeholder="Ingresar el monto de la recarga">
+			<div class="mb-3" *ngIf="control.recarga.touched && control.recarga.invalid" class="alert alert-danger">
+	            <label *ngIf="control.recarga.errors.required">El Monto de la Recarga es requerido.</label>
+	            <label *ngIf="control.recarga.errors.min">El Monto de la Recarga debe ser superior a 0.</label>
+			</div>
+		</div>
+	</div>
+
+	<hr class="mb-4" *ngIf="cliente.habilitado">
+	<button *ngIf="cliente.habilitado"
+			class="btn btn-lg btn-block btn-primary"
+			type="submit">Realizar Recarga</button>
+</form>

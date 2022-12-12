@@ -1,0 +1,27 @@
+<nav class="navbar navbar-expand-sm navbar-dark bg-dark">
+	
+	<a class="navbar-brand" routerLinkActive="btn-secondary" routerLink="/pantalla-inicial">{{ titulo }}</a>
+	
+	<button class="navbar-toggler" type="button" data-toggle="collapse" 
+			data-target="#navbars"
+			aria-controls="navbars"
+			aria-expanded="false" aria-label="Toggle navigation">
+		<span class="navbar-toggler-icon"></span>
+	</button>
+
+	<div class="collapse navbar-collapse" id="navbars">
+		<ul class="navbar-nav mr-auto" *ngIf="existe">
+			<li class="nav-item"><a class="nav-link" routerLinkActive="btn-secondary" routerLink="/cliente">Vista Cliente</a></li>
+			<li class="nav-item"><a class="nav-link" routerLinkActive="btn-secondary" routerLink="/comprar">Comprar Producto</a></li>
+			<li class="nav-item"><a class="nav-link" routerLinkActive="btn-secondary" routerLink="/recargar">Recargar</a></li>
+			<li class="nav-item"><a class="nav-link" routerLinkActive="btn-secondary" routerLink="/historico">Historico</a></li>
+		</ul>		
+		<button *ngIf="existe"
+				class="my-2 my-md-0 btn btn-primary" 
+				(click)="salir()">Salir</button>
+	</div>
+</nav>
+
+<div class="container">
+	<router-outlet></router-outlet>
+</div>

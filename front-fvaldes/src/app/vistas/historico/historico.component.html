@@ -1,0 +1,55 @@
+<h2>Movimientos Historicos</h2>
+
+<div class="row">
+	<div class="col-md-6 mb-6">
+		<label for="estado">Cliente</label>
+		<input	[disabled]="true"
+				type="text"
+				class="form-control"
+				id="estado"
+				value="{{cliente?.nombre + ' ' + cliente?.apellido}}"
+				placeholder="xxxxxxxxx">
+	</div>
+	<div class="col-md-6 mb-6">
+		<label for="cuenta">Nro de Cuenta</label>
+		<input	[disabled]="true"
+				type="text"
+				value="{{cliente?.cuenta}}"
+				class="form-control"
+				id="cuenta"
+				placeholder="xxxxxxxxx">
+	</div>
+</div>
+<div class="table-responsive">
+	<table class="table table-striped table-sm">
+		
+		<thead>
+			<tr>
+				<th>Descripci&#243;n</th>
+				<th>Compras</th>
+				<th>Recargas</th>
+			</tr>
+		</thead>
+		
+		<tbody>
+			<tr *ngFor="let mov of movimientos;">
+				<td>{{ mov?.detalle }}</td>
+				<td class="text-right">{{ mov?.debe | currency:'CLP':'symbol-narrow' }}</td>
+				<td class="text-right">{{ mov?.haber | currency:'CLP':'symbol-narrow' }}</td>
+			</tr>
+		</tbody>
+		<tbody>
+			<tr>
+				<th>{{ total?.detalle }}</th>
+				<th class="text-right">{{ total?.debe | currency:'CLP':'symbol-narrow' }}</th>
+				<th class="text-right">{{ total?.haber | currency:'CLP':'symbol-narrow' }}</th>
+			</tr>
+			<tr>
+				<th>{{ saldo?.detalle }}</th>
+				<th class="text-right">{{ saldo?.debe | currency:'CLP':'symbol-narrow' }}</th>
+				<th class="text-right">{{ saldo?.haber | currency:'CLP':'symbol-narrow' }}</th>
+			</tr>
+		</tbody>
+		
+	</table>
+</div>

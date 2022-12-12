@@ -1,0 +1,37 @@
+<div class="text-center">
+
+	<form class="form-busqueda" [formGroup]="formulario"
+		(ngSubmit)="submit()">
+
+		<h1 class="h3 mb-3 font-weight-normal">Operar Tarjeta Electronica</h1>
+		<div class="mb-3" *ngIf="mensaje !== null" class="alert alert-danger">
+            <label>{{ mensaje }}</label>
+		</div>
+
+		<label for="inputCuenta" class="sr-only">Numero de cuenta</label>
+		
+		<input	formControlName="cuenta"
+				type="text" 
+				id="inputCuenta"
+				class="form-control"
+				placeholder="Nro de Cuenta">
+			
+		<div class="mb-3" *ngIf="control.cuenta.touched && control.cuenta.invalid" class="alert alert-danger">
+            <label *ngIf="control.cuenta.errors.required">Nro de cuenta es requerido.</label>
+            <label *ngIf="control.cuenta.errors.minlength">Nro de cuenta debe ser de 8 caracteres.</label>
+		</div>
+
+		<button class="btn btn-lg btn-primary btn-block" type="submit">Buscar</button>
+
+	</form>
+	
+
+	<div class="row justify-content-center">
+		<div class="list-group">
+			<span class="list-group-item list-group-item-action active">Cuentas Conocidas <span class="text-muted">(Agregados para Test)</span></span>
+			<button type="button" class="list-group-item list-group-item-action" (click)="control.cuenta.setValue('12234444')">Cliente Nro 1 :: <span class="text-muted">122344444</span></button>
+			<button type="button" class="list-group-item list-group-item-action" (click)="control.cuenta.setValue('19523862')">Cliente Nro 2 :: <span class="text-muted">19523862</span></button>
+		</div>
+	</div>
+	
+</div>

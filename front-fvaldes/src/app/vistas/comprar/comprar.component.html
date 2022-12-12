@@ -1,0 +1,40 @@
+<h4>Realizar compra del Cliente</h4>
+
+<div class="mb-12" *ngIf="mensaje !== null" class="alert" [ngClass]="{'alert-danger': error,'alert-info': !error }">
+	<label>{{ mensaje }}</label>
+</div>
+
+<form [formGroup]="formulario" (ngSubmit)="submit()">
+	<div class="row">
+	
+		<div class="col-md-6 mb-6">
+			<label for="producto">Producto a comprar</label>
+			<input	formControlName="producto"
+					type="text"
+					class="form-control"
+					id="producto"
+					placeholder="Nombre del Producto">
+					
+			<div class="mb-3" *ngIf="control.producto.touched && control.producto.invalid" class="alert alert-danger">
+	            <label *ngIf="control.producto.errors.required">El Nombre del Producto es requerido.</label>
+	            <label *ngIf="control.producto.errors.maxlength">El Nombre del Producto no debe exceder los 100 caracteres.</label>
+			</div>
+		</div>
+		
+		<div class="col-md-6 mb-6">
+			<label for="precio">Precio del Producto</label>
+			<input	formControlName="precio"
+					type="number"
+					class="form-control"
+					id="precio"
+					placeholder="Ingresar el precio">
+			<div class="mb-3" *ngIf="control.precio.touched && control.precio.invalid" class="alert alert-danger">
+	            <label *ngIf="control.precio.errors.required">El Precio del Producto es requerido.</label>
+	            <label *ngIf="control.precio.errors.min">El Precio del Producto no puede ser 0.</label>
+			</div>
+		</div>
+	</div>
+
+	<hr class="mb-4">
+	<button class="btn btn-lg btn-block btn-primary" type="submit">Realizar Compra</button>
+</form>

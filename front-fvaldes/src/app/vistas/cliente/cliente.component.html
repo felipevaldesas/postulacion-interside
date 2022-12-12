@@ -1,0 +1,61 @@
+<h4>Informacion del Cliente</h4>
+
+<div class="mb-12" *ngIf="mensaje !== null" class="alert" [ngClass]="{'alert-danger': error,'alert-info': !error }">
+	<label>{{ mensaje }}</label>
+</div>
+
+<form [formGroup]="formulario" (ngSubmit)="submit()">
+	<div class="row">
+	
+		<div class="col-md-6 mb-6">
+			<label for="cuenta">Nro de Cuenta<span class="text-muted">(solo lectura)</span></label>
+			<input	formControlName="cuenta"
+					type="text"
+					class="form-control"
+					id="cuenta"
+					placeholder="xxxxxxxxx">
+		</div>
+		
+		<div class="col-md-6 mb-6">
+			<label for="estado">Estado del Cliente<span class="text-muted">(solo lectura)</span></label>
+			<input	formControlName="estado"
+					type="text"
+					class="form-control"
+					id="estado"
+					placeholder="xxxxxxxxx">
+		</div>
+		
+	
+		<div class="col-md-6 mb-3">
+			<label for="nombre">Nombre</label>
+			<input	formControlName="nombre"
+					type="text"
+					class="form-control"
+					id="nombre"
+					placeholder="">
+			<div class="mb-3" *ngIf="control.nombre.touched && control.nombre.invalid" class="alert alert-danger">
+	            <label *ngIf="control.nombre.errors.required">El Nombre es requerido.</label>
+	            <label *ngIf="control.nombre.errors.minlength">El Nombre debe superar los 2 caracteres.</label>
+	            <label *ngIf="control.nombre.errors.maxlength">El Nombre no debe exceder los 40 caracteres.</label>
+			</div>
+		</div>
+		
+		<div class="col-md-6 mb-3">
+			<label for="apellido">Apellido</label>
+			<input  formControlName="apellido"
+					type="text"
+					class="form-control"
+					id="apellido"
+					placeholder="">
+			<div class="mb-3" *ngIf="control.apellido.touched && control.apellido.invalid" class="alert alert-danger">
+	            <label *ngIf="control.apellido.errors.required">El Apellido es requerido.</label>
+	            <label *ngIf="control.apellido.errors.minlength">El Apellido debe superar los 2 caracteres.</label>
+	            <label *ngIf="control.apellido.errors.maxlength">El Apellido no debe exceder los 40 caracteres.</label>
+			</div>
+		</div>
+	</div>
+
+	<hr class="mb-4" />
+	
+	<button class="btn btn-lg btn-block btn-primary" type="submit">Actualizar Informacion</button>
+</form>
